@@ -1,15 +1,20 @@
 var field = document.querySelector('.coin');
 var ball = document.querySelector('.ball');
-var secundsRemaining = 30;//можно положить из хтмл
+var secundsRemaining = 1600;//можно положить из хтмл
 var intervarHandle = setInterval(tick, 1000);
 var coin = 0;
+var gameField=document.querySelector('.game-Field');
 
 ball.style.width=100+'px';
+
 ball.onclick = function (e) {
     //alert('ball');
     //ball.style.position = ' absolute';
-    ball.style.left = randomInteger(0, 275) + 'px';
-    ball.style.bottom = randomInteger(0, 275) + 'px';
+    ball.style.left = randomInteger(0, 235 ) + 'px';
+    ball.style.bottom = randomInteger(0, 235) + 'px';
+    console.dir(gameField.style.width);
+
+
     //колобок сбежал))
     //что нетак с моим шариком?
     // ball.animate({ height: 50 });
