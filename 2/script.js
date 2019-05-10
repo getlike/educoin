@@ -9,8 +9,6 @@ var btnStartMulty = document.querySelector('#multi');
 var switcher = true;
 
 
-
-
 btnStart.onclick = function () {
     startBlock.style.display = 'none';
     ball.style.display = 'block';
@@ -97,8 +95,12 @@ document.onkeyup = function (e) {//цвет обратно
 function gameOne() {
     ball.style.left = randomInteger(3, gameField.clientWidth - 106) + 'px';
     ball.style.top = randomInteger(3, gameField.clientHeight - 106) + 'px';
-    console.log(ball.style.left + ' ' + ball.style.top);
+
     console.dir(ball);
+    ball.style.width = (ball.clientWidth - 10) + 'px';
+    ball.style.height = (ball.clientHeight - 10) + 'px';//гыгы
+
+
 }
 
 //много шариков
@@ -111,12 +113,12 @@ function gameMulty() {
 
     div.style.left = randomInteger(3, gameField.clientWidth - 106) + 'px';
     div.style.top = randomInteger(3, gameField.clientHeight - 106) + 'px';
-    div.addEventListener('click',function () {
+    div.addEventListener('click', function () {
         div.remove();
         if (document.querySelector('.newBall')) {
             console.log('has');
         }
-        else{
+        else {
             endGame();
         }
 
@@ -135,21 +137,22 @@ function randomInteger(min, max) {//капец как неудобненько
     rand = Math.floor(rand);
     return rand;
 }
+
 //конец ребут
-function endGame(){
+function endGame() {
     console.log('end');
 
-    startBlock.style.display='block';
-    btnStart.style.display='none';
-    var btnEnd=document.createElement('button');
-    btnEnd.className='buttons';
-    btnEnd.display='true';
-    btnEnd.innerHTML='new game?';
+    startBlock.style.display = 'block';
+    btnStart.style.display = 'none';
+    var btnEnd = document.createElement('button');
+    btnEnd.className = 'buttons';
+    btnEnd.display = 'true';
+    btnEnd.innerHTML = 'new game?';
     startBlock.appendChild(btnEnd);
-    btnEnd.onclick=function () {
+    btnEnd.onclick = function () {
         location.reload();
     }
-    //btnStart.style.display='none';
+
 
 
 }
