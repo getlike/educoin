@@ -1,9 +1,14 @@
 var ball = document.querySelector('.ball');
 var gameField = document.querySelector('.game-field');
+var newBall = document.querySelector('.newBall');
+//батОны
 var startBlock = document.querySelector('.start-block');
 var btnStart = document.querySelector('#btnStart');
 var btnStartMulty = document.querySelector('#multi');
+
 var switcher = true;
+
+
 
 
 btnStart.onclick = function () {
@@ -26,14 +31,19 @@ btnStartMulty.onclick = function () {//переключатель положен
 
     console.log('multy presed')
 }
-//switcher todo
 ball.onclick = function () {//жмакаем одинокий шарик
     //switcher here
     if (switcher) {
         gameOne();
     }
     else {
-        gmaeMulty();
+        ball.remove();
+        console.log('deleted');
+        var rnd = randomInteger(1, 5);
+        for (var i = 0; i < rnd; i++) {
+            gameMulty();
+        }
+
     }
 }
 
@@ -91,24 +101,55 @@ function gameOne() {
     console.dir(ball);
 }
 
-function gmaeMulty() {
-    ball.remove();
-    console.log('deleted');
+//много шариков
+function gameMulty() {
+
 
     var div = document.createElement('div');
     div.className = "newBall";
-    div.style.display='block';
+    div.style.display = 'block';
 
     div.style.left = randomInteger(3, gameField.clientWidth - 106) + 'px';
     div.style.top = randomInteger(3, gameField.clientHeight - 106) + 'px';
+    div.addEventListener('click',function () {
+        div.remove();
+        if (document.querySelector('.newBall')) {
+            console.log('has');
+        }
+        else{
+            endGame();
+        }
+
+
+    })
+
 
     gameField.appendChild(div);
 
+
 }
 
+//великий рандом
 function randomInteger(min, max) {//капец как неудобненько
     var rand = min + Math.random() * (max + 1 - min);
     rand = Math.floor(rand);
     return rand;
 }
+//конец ребут
+function endGame(){
+    console.log('end');
 
+    startBlock.style.display='block';
+    btnStart.style.display='none';
+    var btnEnd=document.createElement('button');
+    btnEnd.className='buttons';
+    btnEnd.display='true';
+    btnEnd.innerHTML='new game?';
+    startBlock.appendChild(btnEnd);
+    btnEnd.onclick=function () {
+        location.reload();
+    }
+    //btnStart.style.display='none';
+
+
+}
