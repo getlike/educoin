@@ -1,19 +1,23 @@
 var gamer = document.querySelector('.gamer');
-
-
+var gameField=document.querySelector('.game-field')
 
 var coin = 0;
 console.dir(gamer);
-
+console.dir(gameField);
 // while (true){
-    setInterval(function() {move()}, 1000);
+setInterval(function () {
+    move()
+}, 500);
 // }
-
 
 
 // gamer.style.left = (ball.offsetLeft - 1) + 'px';
 function move() {
-    gamer.style.left = 150 + 'px';
-    coin++;
-    console.log('move '+coin);
+    if (gamer.style.left<(gameField.offsetWidth)) {
+        gamer.style.left = gamer.offsetLeft + 25 + 'px';
+        coin++;
+        console.log(gamer.style.left);
+    }else {
+        gamer.style.left = gamer.offsetLeft - 25 + 'px';
+    }
 }
