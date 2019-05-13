@@ -1,0 +1,25 @@
+.game-field{
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    border:2px solid #888888;
+}
+.gamer{
+    position: absolute;
+
+}
+.ball{
+    width: 35px;
+    height: 35px;
+    border: black 2px solid;
+    border-radius: 50%;
+    background: aqua;
+    position: absolute;
+
+}
+img{
+    border-radius: 50%;
+
+    width: 100px;
+    height: 100px;
+}
