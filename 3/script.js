@@ -22,7 +22,7 @@ btnStart.onclick = function () {
     ball.style.display = 'block';
     setInterval(function () {
         move()
-    }, 500);
+    }, 25);
 }
 
 
@@ -37,7 +37,7 @@ function move() {
     //пусть колобок побегает
 
     if (gamer.offsetLeft < gameField.clientWidth - gamer.clientWidth && moveNow == 'right') {
-        gamer.style.left = gamer.offsetLeft + 50 + 'px';
+        gamer.style.left = gamer.offsetLeft + 2 + 'px';
 
         if (gamer.offsetLeft == gameField.clientWidth - gamer.clientWidth) {
             moveNow = 'left';
@@ -46,14 +46,14 @@ function move() {
     } else if (gamer.offsetLeft > 0 && moveNow == 'left') {
 
 
-        gamer.style.left = gamer.offsetLeft - 50 + 'px';
+        gamer.style.left = gamer.offsetLeft - 2 + 'px';
         if (gamer.offsetLeft == 0) {
             moveNow = 'right';
             gamer.style.transform = 'scale(1, 1)';
         }
     }
     else if (gamer.offsetTop < gameField.clientHeight - gamer.clientHeight && moveNow == 'down') {
-        gamer.style.top = gamer.offsetTop + 50 + 'px';
+        gamer.style.top = gamer.offsetTop + 2 + 'px';
         gamer.style.transform = 'rotate(90deg)';
         if (gamer.offsetTop >= gameField.clientHeight - gamer.clientHeight) {
 
@@ -62,7 +62,7 @@ function move() {
     }
 
     else {
-        gamer.style.top = gamer.offsetTop - 50 + 'px';
+        gamer.style.top = gamer.offsetTop - 2 + 'px';
         gamer.style.transform = 'rotate(270deg)';
         if (gamer.offsetTop == 0) {
             moveNow = 'down'

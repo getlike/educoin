@@ -1,7 +1,8 @@
-div{
+div {
     border-radius: 15px;
 
 }
+
 .start-block {
     position: absolute;
     width: 100%;
@@ -11,6 +12,7 @@ div{
     top: 0;
     background-color: rgba(255, 255, 255, 0.6);
 }
+
 .buttons {
     background: aqua;
     border-radius: 15px;
@@ -25,49 +27,142 @@ div{
     text-align: center;
 }
 
-.field{
+.field {
     position: relative;
     border: #888888 2px solid;
     background-color: #c4f3e4;
 }
+
 .score,
-.timer{
+.timer {
     background-color: burlywood;
     width: 805px;
     margin: 15px auto;
-    left:50%;
+    left: 50%;
     border: 1px solid burlywood;
     text-align: center;
 }
-.game-field{
-background-color: white;
+
+.game-field {
+    background-color: white;
     margin: auto;
     position: relative;
     width: 800px;
     height: 800px;
-    border:2px solid #888888;
+    border: 2px solid #888888;
 }
-.gamer{
+
+.gamer {
     position: absolute;
     display: none;
+    width:60px;
+    height: 60px;
 
 }
-.ball{
+
+.ball {
     display: none;
-    width: 35px;
-    height: 35px;
+    width: 15px;
+    height: 15px;
     border: black 2px solid;
     border-radius: 50%;
     background: aqua;
     position: absolute;
 
     left: 400px;
-    top:  400px;
+    top: 400px;
 
 }
-img{
+
+img {
     border-radius: 50%;
 
     width: 100px;
     height: 100px;
+}
+
+.buttonsT {
+
+    background: aqua;
+    border-radius: 15px;
+    width: 30%;
+    height: 50px;
+    outline: none;
+    padding: 15px;
+
+    position: relative;
+
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+.buttonsSpan {
+
+}
+
+/*новый пакман*/
+
+.path {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    background: #333;
+    padding: 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.path::after {
+    content: "";
+    position: absolute;
+    display: block;
+    border-top: 12px dotted white;
+    width: 90%;
+    top: 50%;
+    left: 5%;
+    margin-top: -6px;
+
+}
+
+.pacman {
+    position: absolute;
+    z-index: 99;
+    top: 50%;
+
+}
+
+.pacman::before, .pacman::after {
+    content: "";
+    display: block;
+    height: 0;
+    width: 0;
+    position: absolute;
+    border: solid 30px yellow;
+    margin-top: -30px;
+    border-radius: 50%;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    animation: mouthTop 0.7s ease infinite;
+}
+
+.pacman::after {
+
+    border-color: yellow;
+    border-right-color: transparent;
+    border-top-color: transparent;
+    animation: mouthBotum 0.7s ease infinite;
+
+}
+
+
+@keyframes mouthTop {
+   50%{
+       transform: rotate(44deg);
+   }
+}
+@keyframes mouthBotum {
+    50%{
+        transform: rotate(-44deg);
+    }
 }
