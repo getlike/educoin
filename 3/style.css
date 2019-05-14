@@ -1,20 +1,68 @@
-.game-field{
+div{
+    border-radius: 15px;
+
+}
+.start-block {
     position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 0%;
+    left: 0;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.6);
+}
+.buttons {
+    background: aqua;
+    border-radius: 15px;
+    width: 100px;
+    height: 50px;
+    outline: none;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+
+    text-align: center;
+}
+
+.field{
+    position: relative;
+    border: #888888 2px solid;
+    background-color: #c4f3e4;
+}
+.score,
+.timer{
+    background-color: burlywood;
+    width: 805px;
+    margin: 15px auto;
+    left:50%;
+    border: 1px solid burlywood;
+    text-align: center;
+}
+.game-field{
+background-color: white;
+    margin: auto;
+    position: relative;
     width: 800px;
     height: 800px;
     border:2px solid #888888;
 }
 .gamer{
     position: absolute;
+    display: none;
 
 }
 .ball{
+    display: none;
     width: 35px;
     height: 35px;
     border: black 2px solid;
     border-radius: 50%;
     background: aqua;
     position: absolute;
+
+    left: 400px;
+    top:  400px;
 
 }
 img{
