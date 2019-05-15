@@ -1,31 +1,41 @@
 body {
     background-color: #c4f3e4;
 }
-
-div {
-
-    width: 400px;
-    height: 50px;
-    border-radius: 15px;
-    border: 2px solid whitesmoke;
-
-    margin: 0 0;
+h2{
+    color: white;
+    font-family: 'Lato', sans-serif;;
 }
-
-.score {
-    background: deepskyblue;
+.sLife{
+    background: green;
+    border: 1px white dashed;
+    width: 20px;
+    height: 20px;
+    margin: 10px;
+    float: left;
 }
+#score {
+    /*background: deepskyblue;*/
+    float: left;
 
-.timer {
-    background: antiquewhite;
+}
+.lifes{
+    float: left;
+    margin: 10px 40px;
+}
+#timer {
+
+    width: 100px;
+    float: left;
 }
 
 .game-field {
+
     position: absolute;
     top: auto;
     left: auto;
     height: 400px;
-    background: aqua;
+    width: 400px;
+    background: dimgray;
 }
 
 .start-block {
