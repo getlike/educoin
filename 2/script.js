@@ -31,6 +31,12 @@ btnStartMulty.onclick = function () {//переключатель положен
 }
 ball.onclick = function () {//жмакаем одинокий шарик
     //switcher here
+    if(ball.style.background=='yellow'){
+        ball.style.background='blue';
+    }
+    else {
+        ball.style.background='yellow';
+    }
     if (switcher) {
         gameOne();
     }
@@ -83,7 +89,7 @@ document.onkeydown = function (e) {
                 }
                 break;
             default:
-                alert('не жмакай шопопало! только стрелочками!');
+                console.log('не жмакай шопопало! только стрелочками!');
         }
     }
 }
@@ -93,8 +99,8 @@ document.onkeyup = function (e) {//цвет обратно
 
 //перемещение по клику
 function gameOne() {
-    ball.style.left = randomInteger(3, gameField.clientWidth - 106) + 'px';
-    ball.style.top = randomInteger(3, gameField.clientHeight - 106) + 'px';
+    ball.style.left = randomInteger(3, gameField.clientWidth - 116) + 'px';
+    ball.style.top = randomInteger(3, gameField.clientHeight - 116) + 'px';
 
     console.dir(ball);
     ball.style.width = (ball.clientWidth - 10) + 'px';

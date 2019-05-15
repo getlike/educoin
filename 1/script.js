@@ -32,8 +32,7 @@ function randomInteger(min, max) {//капец как неудобненько
 }
 
 function tick() {
-    var timeDisplay = document.querySel
-    ctor('.cloack');
+    var timeDisplay = document.querySelctor('.cloack');
 
     var min = Math.floor(secundsRemaining / 60);
     var sec = secundsRemaining - (min * 60);
