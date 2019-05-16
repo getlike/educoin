@@ -206,7 +206,7 @@ console.dir(outerBlock);
 //движние игрока
 function move(gamer) {
   //  if (gamer.style.display == 'block') {
-       // omnom(gamer);
+       omnom(gamer);
    // }
     //пусть колобок побегает
 
@@ -253,7 +253,7 @@ function omnom(gamer) {//получаем координаты пакмана (4
     for (var i = 0; i < bals.length;i++){
         if (gamer.offsetTop <= bals[i].offsetTop && gamer.offsetLeft <= bals[i].offsetLeft) {
             //если нижняя и правая граница пакмана больше гранци шарика
-
+console.dir(bals[i]);
             if (gamer.offsetTop + gamer.offsetHeight >= bals[i].offsetTop + bals[i].offsetHeight && gamer.offsetLeft + gamer.offsetWidth >= bals[i].offsetLeft + bals[i].offsetWidth) {
                 // ball.style.top = randomInteger(gameField.offsetTop, gameField.offsetHeight - ball.offsetHeight) + 'px';
                 // ball.style.left = randomInteger(gameField.offsetLeft, gameField.offsetWidth - ball.offsetWidth) + 'px';
@@ -261,8 +261,8 @@ function omnom(gamer) {//получаем координаты пакмана (4
                 //sound.play();
                 //шарик должен быть уничтожен
                 bals[i].remove();
-                coin++;
-                scoreField.innerHTML = "<h2> score:"+coin+"</h2>";
+                scoreCounter++;
+                scoreField.innerHTML = "<h2> score:"+scoreCounter+"</h2>";
 
             }
             //console.log('vertikal & gorizontal');
