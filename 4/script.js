@@ -136,65 +136,81 @@ function createBlockContinue() {
     blockButton.id = "blockButton";
     blockButton.innerHTML = "";
 
-    var buttonBlock=document.createElement('button');
-    buttonBlock.className='button';
-    buttonBlock.innerText='continue';
+    var buttonBlock = document.createElement('button');
+    buttonBlock.className = 'button';
+    buttonBlock.innerText = 'continue';
     blockButton.appendChild(buttonBlock);
 
-    var buttonBlock1=document.createElement('button');
-    buttonBlock1.className='button';
-    buttonBlock1.innerText='stop';
+    var buttonBlock1 = document.createElement('button');
+    buttonBlock1.className = 'button';
+    buttonBlock1.innerText = 'stop';
     blockButton.appendChild(buttonBlock1);
 
-    var buttonBlock2=document.createElement('button');
-    buttonBlock2.className='button';
-    buttonBlock2.innerText='кракен';
+    var buttonBlock2 = document.createElement('button');
+    buttonBlock2.className = 'button';
+    buttonBlock2.innerText = 'кракен';
     blockButton.appendChild(buttonBlock2);
 
 
     block.appendChild(blockButton);
 
-    document.body.appendChild(block)
-    buttonBlock.onclick=function(){
+    document.body.appendChild(block);
+    buttonBlock.onclick = function () {
         reload();
         block.remove();
-    }
-    buttonBlock1.onclick=function () {
+    };
+    buttonBlock1.onclick = function () {
         endGame();
-    }
-    buttonBlock2.onclick=function () {
+    };
+    buttonBlock2.onclick = function () {
         blockButton.onclick;
+        //трайкетч
+        if (document.querySelector('.pacman')) {
+            document.querySelector('.pacman').remove();//удаляем лишнее
+
+        }
+
         cracken();//создаем
         reload();//создаем шарики
         block.remove();//убираем кнопки
+
     }
 }
+
 function reload() {
     for (var i = 0; i < ballsCount; i++) {//создаем мячики
         createBall();
     }
 
 }
+
 function cracken() {
+    var outerBlock=document.createElement('div');
+    outerBlock.className='pacmanOuter';
+
     var block = document.createElement('div');
     block.className = "pacman";
 
-    gameField.appendChild(block);
+    outerBlock.appendChild(block);
+console.dir(outerBlock);
+    gameField.appendChild(outerBlock);
     ///запускаем кракена
 
     setInterval(function () {
-        move(block)
+        move(outerBlock)
+
     }, 25);
 
 }
+
 //движние игрока
 function move(gamer) {
-    if(gamer.style.display=='block'){
-        omnom();
-    }
+  //  if (gamer.style.display == 'block') {
+       // omnom(gamer);
+   // }
     //пусть колобок побегает
 
-    if (gamer.offsetLeft < gameField.clientWidth - gamer.clientWidth && moveNow == 'right') {
+    if (gamer.offsetLeft < gameField.clientWidth - gamer.clientWidth && moveNow == 'right') {//что то с указателем не то
         gamer.style.left = gamer.offsetLeft + 2 + 'px';
         gamer.style.transform = 'scale(1, 1)';
 
@@ -229,24 +245,51 @@ function move(gamer) {
         }
     }
 }
+function omnom(gamer) {//получаем координаты пакмана (4)
+//получить все шарики
+    //прогнать масив на координаты О_О
+    var bals=document.querySelectorAll('.ball');
 
+    for (var i = 0; i < bals.length;i++){
+        if (gamer.offsetTop <= bals[i].offsetTop && gamer.offsetLeft <= bals[i].offsetLeft) {
+            //если нижняя и правая граница пакмана больше гранци шарика
+
+            if (gamer.offsetTop + gamer.offsetHeight >= bals[i].offsetTop + bals[i].offsetHeight && gamer.offsetLeft + gamer.offsetWidth >= bals[i].offsetLeft + bals[i].offsetWidth) {
+                // ball.style.top = randomInteger(gameField.offsetTop, gameField.offsetHeight - ball.offsetHeight) + 'px';
+                // ball.style.left = randomInteger(gameField.offsetLeft, gameField.offsetWidth - ball.offsetWidth) + 'px';
+                // sound.currentTime = 0;
+                //sound.play();
+                //шарик должен быть уничтожен
+                bals[i].remove();
+                coin++;
+                scoreField.innerHTML = "<h2> score:"+coin+"</h2>";
+
+            }
+            //console.log('vertikal & gorizontal');
+        }
+        //сожрать и рамдомно выбросить шарик
+        //увеличить коин
+    }
+    //если верхняя и лева граница пакмана меньше гранци шарика
+
+}
 //клавиатура
 document.onkeydown = function (e) {
     switch (e.key) {
         case 'ArrowLeft':
             moveNow = 'left';
-            gamer.style.transform = 'scale(-1, 1)';
+
             break;
         case 'ArrowRight':
             moveNow = 'right';//нужно как то крутить головой
-            gamer.style.transform = 'scale(1, 1)';
+
             break;
         case 'ArrowDown':
             moveNow = 'down';
             break;
         case 'ArrowUp':
             moveNow = 'up';//нужно как то крутить головой
-            gamer.style.transform = 'scale(1, 1)';
+
             break;
     }
 }
