@@ -12,14 +12,14 @@ var sizeBall = 20;
 var scoreCounter = 1;//так вышло((
 var secundsRemaining = 1120;
 var switcher = true;
-var ballsCount = randomInteger(1, 2);
+var ballsCount = randomInteger(1, 3);
 
 var moveNow = 'right';
 
 //game logic
 
 
-btnStart.onclick = function () {
+btnStart.onclick = function () {//логика шаров здесь и это неверно
     startBlock.style.display = 'none';
     //запуск таймера
     var intervarHandle = setInterval(tick, 1000);
@@ -28,14 +28,14 @@ btnStart.onclick = function () {
     createSwitcherBlock();
 
     createLives();
-    for (var i = 0; i < ballsCount; i++) {//создаем мячики
+    for (var i = 0; i < ballsCount; i++) {//создаем мячики взависимости от переменной ballsCount
         createBall();
     }
 
-    gameField.addEventListener('click', function (e) {
-        if (e.target.valueOf().className == 'game-field') {
+    gameField.addEventListener('click', function (e) {//слушаем нажатие наполе
+        if (e.target.valueOf().className == 'game-field') {//если по полю то убираем жизнь
             document.querySelector('.sLife').remove();
-            if (!document.querySelector('.sLife')) {
+            if (!document.querySelector('.sLife')) {//если жизней не осталось - конец игры
                 endGame();
             }
         }
@@ -43,21 +43,21 @@ btnStart.onclick = function () {
 }
 
 
-function createTimerBlock() {
+function createTimerBlock() {//щитаем время
     var timerBlock = document.createElement('div');
     timerBlock.id = "timer";
     timerBlock.innerHTML = "<h2> T:<span></span></h2>";
     gameField.appendChild(timerBlock);
 }
 
-function createSwitcherBlock() {
+function createSwitcherBlock() {//безполезная (пока) херня снизу
     var block = document.createElement('div');
     block.id = "switcher";
     block.innerHTML = "switcher";
     document.body.appendChild(block)
 }
 
-function createScoreBlock() {
+function createScoreBlock() {//очки
     var block = document.createElement('div');
     block.id = "score";
     block.innerHTML = "<h2 class='score'> score:</h2>";
@@ -71,7 +71,7 @@ function createScoreBlock() {
     h2.appendChild(scoreBlock);
 }
 
-function createLives() {
+function createLives() {//жизни
     var block = document.createElement('div');
     block.className = 'lifes';
 
@@ -88,14 +88,14 @@ function createLives() {
 }
 
 
-function createBall() {
+function createBall() {//создаем мячики
 
     var ball = document.createElement('div');
     ball.className = 'ball';
-    ball.style.left = randomInteger(0, 300) + 'px';
-    ball.style.top = randomInteger(0, 300) + 'px';
+    ball.style.left = randomInteger(0, gameField.offsetWidth - 30) + 'px';//рандомно в пределах поля
+    ball.style.top = randomInteger(0, gameField.offsetHeight - 30) + 'px';
 
-    ball.style.background = "rgb(" + randomInteger(0, 255) + "," + randomInteger(0, 255) + "," + randomInteger(0, 255) + ")";
+    ball.style.background = "rgb(" + randomInteger(0, 255) + "," + randomInteger(0, 255) + "," + randomInteger(0, 255) + ")";//разноцветненько
 
     ball.style.width = sizeBall + 'px';
     ball.style.height = sizeBall + 'px';
@@ -167,6 +167,7 @@ function createBlockContinue() {
         if (document.querySelector('.pacman')) {
             document.querySelector('.pacman').remove();//удаляем лишнее
             document.querySelector('.pacmanOuter').remove();//удаляем лишнее
+            moveNow = 'right';
 
         }
 
@@ -185,7 +186,7 @@ function reload() {
 }
 
 function cracken() {
-    var outerBlock = document.createElement('div');
+    var outerBlock = document.createElement('div');//для отлова положения пакмана
     outerBlock.className = 'pacmanOuter';
 
     var block = document.createElement('div');
@@ -213,10 +214,9 @@ function move(gamer) {
     if (gamer.offsetLeft < gameField.clientWidth - gamer.clientWidth && moveNow == 'right') {//что то с указателем не то
         gamer.style.left = gamer.offsetLeft + 2 + 'px';
         gamer.style.transform = 'scale(1, 1)';
-
         if (gamer.offsetLeft == gameField.clientWidth - gamer.clientWidth) {
             moveNow = 'left';
-            //gamer.style.transform = 'scale(-1, 1)';
+
         }
     } else if (gamer.offsetLeft > 0 && moveNow == 'left') {
         gamer.style.transform = 'scale(-1, 1)';
@@ -234,7 +234,7 @@ function move(gamer) {
 
             moveNow = 'up'
         }
-    } else {
+    } else if (gamer.offsetTop > 0 && moveNow == 'up') {
         gamer.style.top = gamer.offsetTop - 2 + 'px';
         gamer.style.transform = 'rotate(270deg)';
         if (gamer.offsetTop == 0) {
@@ -251,29 +251,31 @@ function omnom(gamer) {//получаем координаты пакмана (4
     for (var i = 0; i < bals.length; i++) {
         if (gamer.offsetTop <= bals[i].offsetTop && gamer.offsetLeft <= bals[i].offsetLeft) {
             //если нижняя и правая граница пакмана больше гранци шарика
-            console.dir(bals[i]);
+            //================================
+            //МАГИЯ
+            //================================
             if (gamer.offsetTop + gamer.offsetHeight >= bals[i].offsetTop + bals[i].offsetHeight && gamer.offsetLeft + gamer.offsetWidth >= bals[i].offsetLeft + bals[i].offsetWidth) {
-                // ball.style.top = randomInteger(gameField.offsetTop, gameField.offsetHeight - ball.offsetHeight) + 'px';
-                // ball.style.left = randomInteger(gameField.offsetLeft, gameField.offsetWidth - ball.offsetWidth) + 'px';
-                // sound.currentTime = 0;
-                //sound.play();
-                //шарик должен быть уничтожен
+
                 bals[i].remove();
                 scoreCounter++;
                 document.querySelector('.score').innerHTML = 'score ' + scoreCounter;
                 console.log(bals.length);
-                if (bals.length == 0) {
-                    console.log('')
-                    endGame();
+                if (bals.length == 1) {//проверяем количество несьеденых шариков
+                    createBlockContinue()
+
+                    //reload();//вызвать попап
                 }
 
             }
-            //console.log('vertikal & gorizontal');
+            //================================
+            //МАГИЯ
+            //================================
+
         }
         //сожрать и рамдомно выбросить шарик
         //увеличить коин
     }
-    //если верхняя и лева граница пакмана меньше гранци шарика
+
 
 }
 

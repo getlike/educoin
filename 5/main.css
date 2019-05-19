@@ -37,8 +37,8 @@ h2 {
     position: absolute;
     top: auto;
     left: auto;
-    height: 400px;
-    width: 400px;
+    height: 600px;
+    width: 600px;
     background: dimgray;
 }
 
@@ -82,12 +82,13 @@ h2 {
 }
 
 #switcher {
+
     position: absolute;
-    width: 396px;
+    width: 206px;
     height: 63px;
     border: #333333 2px solid;
-    left: 8px;
-    top: 411px;
+    left: 613px;
+    top: 543px;
 }
 
 #continue {
@@ -152,6 +153,7 @@ pacman
     position: absolute;
     width: 60px;
     height: 60px;
+    border: 2px solid black;
 
 }
 
