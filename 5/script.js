@@ -92,24 +92,8 @@ function createBall() {
 
     var ball = document.createElement('div');
     ball.className = 'ball';
-    ball.style.left = "500px"
-    ball.style.top = "500px"
-
-    setTimeout(function () {
-
-
-        ball.style.left = randomInteger(0, 300) + 'px';
-        ball.style.top = randomInteger(0, 300) + 'px';
-    }, 500)
-    setTimeout(function () {
-        //ball.style.top = "600px";
-        if (ball.offsetTop<=gameField.offsetHeight){
-            destroyBall(ball);
-        }
-        downBoll(ball);
-    }, 1500);
-    //утвзщышешщт
-
+    ball.style.left = randomInteger(0, 300) + 'px';
+    ball.style.top = randomInteger(0, 300) + 'px';
 
     ball.style.background = "rgb(" + randomInteger(0, 255) + "," + randomInteger(0, 255) + "," + randomInteger(0, 255) + ")";
 
@@ -125,14 +109,6 @@ function createBall() {
     }
 
     gameField.appendChild(ball);
-}
-
-function downBoll(ball) {
-    ball.style.top = ball.offsetTop + 30 + 'px';
-
-    setTimeout(function () {
-        downBoll(ball);
-    }, 98)
 }
 
 //уничтожить шарик
