@@ -1,0 +1,86 @@
+html,
+body{
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+.wrap{
+    height: 100%;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    color: white;
+    text-align: center;
+    background: #120103;
+}
+header{
+    background: #3e474f;
+    box-shadow: 0.5em 1em #111;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 900;
+    width: 100%;
+}
+header label {
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 4.25em;
+    font-size: 1em;
+    font-weight:bold ;
+    padding: 0.1em;
+}
+header label hover{
+    background: #2e353b;
+}
+
+.slide{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    top: 0;
+    left: 100%;
+    z-index: 10;
+    padding: 8em 1em 0;
+    background: #120103;
+    background-position:50% 50%;
+    background-size: cover;
+    transition: left 0s 0.75s;
+}
+.slide-one{
+    background-image: url("https://cdn.pixabay.com/photo/2016/02/10/21/59/landscape-1192669_960_720.jpg");
+}
+.slide-two{
+    background-image: url("https://cdn.pixabay.com/photo/2019/02/12/11/25/cruise-3991937_960_720.jpg");
+}
+.slide-three{
+    background-image: url("https://cdn.pixabay.com/photo/2017/03/12/02/20/triangle-2136288_960_720.jpg");
+}
+.slide-four{
+    background-image: url("https://cdn.pixabay.com/photo/2015/04/23/12/32/hell-735995_960_720.jpg");
+}
+.slide h1{
+    opacity: 0;
+    transform: translateY(100%);
+    transition: transform 0.5s 0.5s,opacity .5s;
+    }
+[id^='slide']:checked + .slide{
+    left: 0;
+    z-index: 100;
+    transition: left .65s ease-out;
+
+}
+[id^='slide']:checked + .slide h1{
+    opacity: 1;
+    transform: translateY(0);
+    transition: all .5s .5s;
+}
+a{
+    color: white;
+}
+a:visited{
+    text-decoration: line-through;
+}
