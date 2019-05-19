@@ -12,7 +12,7 @@ var sizeBall = 20;
 var scoreCounter = 1;//так вышло((
 var secundsRemaining = 1120;
 var switcher = true;
-var ballsCount = randomInteger(1, 3);
+var ballsCount = randomInteger(5, 15);
 
 var moveNow = 'right';
 
@@ -43,19 +43,14 @@ btnStart.onclick = function () {//логика шаров здесь и это �
 }
 
 
-function createTimerBlock() {//щитаем время
+function createTimerBlock() {//считаем время
     var timerBlock = document.createElement('div');
     timerBlock.id = "timer";
     timerBlock.innerHTML = "<h2> T:<span></span></h2>";
     gameField.appendChild(timerBlock);
 }
 
-function createSwitcherBlock() {//безполезная (пока) херня снизу
-    var block = document.createElement('div');
-    block.id = "switcher";
-    block.innerHTML = "switcher";
-    document.body.appendChild(block)
-}
+
 
 function createScoreBlock() {//очки
     var block = document.createElement('div');
@@ -145,10 +140,7 @@ function createBlockContinue() {
     buttonBlock1.innerText = 'stop';
     blockButton.appendChild(buttonBlock1);
 
-    var buttonBlock2 = document.createElement('button');
-    buttonBlock2.className = 'button';
-    buttonBlock2.innerText = 'кракен';
-    blockButton.appendChild(buttonBlock2);
+    
 
 
     block.appendChild(blockButton);
@@ -161,22 +153,7 @@ function createBlockContinue() {
     buttonBlock1.onclick = function () {
         endGame();
     };
-    buttonBlock2.onclick = function () {
-        blockButton.onclick;
-        //трайкетч
-        if (document.querySelector('.pacman')) {
-            document.querySelector('.pacman').remove();//удаляем лишнее
-            document.querySelector('.pacmanOuter').remove();//удаляем лишнее
-            moveNow = 'right';
-
-        }
-
-        cracken();//создаем
-        reload();//создаем шарики
-        block.remove();//убираем кнопки
-
-    }
-}
+    
 
 function reload() {
     for (var i = 0; i < ballsCount; i++) {//создаем мячики

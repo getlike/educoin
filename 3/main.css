@@ -173,3 +173,13 @@ pacman
 
 
 }
+#enemies{
+    position: absolute;
+    left: 700px;
+    top: 40px;
+    width: 30px;
+    height: 30px;
+    border: 2px solid red;
+    overflow: hidden;
+
+}
